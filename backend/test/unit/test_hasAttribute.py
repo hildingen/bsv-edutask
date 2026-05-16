@@ -1,5 +1,5 @@
 import pytest
-from src.util.helpers import hasAttribute, hasEmail,isTeenager,isPositive,isAdult,grade,hasName,isBetween
+from src.util.helpers import hasAttribute,hasEmail,isTeenager,isPositive,isAdult,grade,hasName,isBetween
 
 @pytest.fixture
 def obj():
