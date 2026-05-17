@@ -2,7 +2,7 @@ from src.controllers.controller import Controller
 from src.util.dao import DAO
 
 import re
-emailValidator = re.compile(r'.*@.*')
+emailValidator = re.compile(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,7}') # https://www.geeksforgeeks.org/python/check-if-email-address-valid-or-not-in-python/
 
 class UserController(Controller):
     def __init__(self, dao: DAO):
@@ -33,6 +33,8 @@ class UserController(Controller):
             if len(users) == 1:
                 return users[0]
             else:
+                if len(users) == 0:
+                    return None
                 print(f'Error: more than one user found with mail {email}')
                 return users[0]
         except Exception as e:

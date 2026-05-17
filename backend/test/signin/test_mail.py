@@ -10,7 +10,7 @@ def dao_set():
     user_controller = UserController(dao = dao_mock)
     
     return user_controller
-
+@pytest.mark.unit
 def test_find_valid_user(dao_set):
     # Arrange
     # (dao_set)
@@ -20,7 +20,7 @@ def test_find_valid_user(dao_set):
     
     # Assert
     assert result == {"email": "yoda@starwars.com"}
-
+@pytest.mark.unit
 def test_invalid_email_no_special_char(dao_set):
     # Arrange
     # (dao_set)
@@ -28,7 +28,7 @@ def test_invalid_email_no_special_char(dao_set):
     # Act/assert
     with pytest.raises(ValueError):
         dao_set.get_user_by_email("r2d2starwars.com")
-
+@pytest.mark.unit
 def test_invalid_email_no_dot(dao_set):
     # Arrange
     # (dao_set)
@@ -36,7 +36,7 @@ def test_invalid_email_no_dot(dao_set):
     # Act/assert
     with pytest.raises(ValueError):
         dao_set.get_user_by_email("r2d2@starwarscom")
-
+@pytest.mark.unit
 def test_vaild_email_no_active_account():
     # Arrange
     dao_mock = MagicMock()
@@ -48,7 +48,7 @@ def test_vaild_email_no_active_account():
 
     # Assert
     assert result is None # ERROR: List index out of range
-
+@pytest.mark.unit
 def test_invalid_email_no_active_account():
     # Arrange
     dao_mock = MagicMock()
@@ -58,7 +58,7 @@ def test_invalid_email_no_active_account():
     # Act/assert
     with pytest.raises(ValueError):
         result = user_controller.get_user_by_email("r2d2starwars.com")
-
+@pytest.mark.unit
 def test_valid_email_no_database_connection():
     # Arrange
     dao_mock = MagicMock()
@@ -68,7 +68,7 @@ def test_valid_email_no_database_connection():
     # Act/assert
     with pytest.raises(Exception):
         result = user_controller.get_user_by_email("r2d2@starwars.com")
-
+@pytest.mark.unit
 def test_invalid_email_no_database_connection():
     # Arrange
     dao_mock = MagicMock()
@@ -78,7 +78,7 @@ def test_invalid_email_no_database_connection():
     # Act/assert
     with pytest.raises(Exception):
         result = user_controller.get_user_by_email("r2d2starwars.com")
-
+@pytest.mark.unit
 def test_valid_email_registred_user_no_database_connection():
     # Arrange
     dao_mock = MagicMock()
